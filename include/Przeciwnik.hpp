@@ -2,19 +2,21 @@
 #include <vector>
 #include "Plansza.hpp"
 
-class Przeciwnik() {
+class Przeciwnik {
 	char znak;
 	char znak_gracza;
 	Plansza& plansza;
-	std::vector<int, 3> liczniki_rzedow = { 0,0,0 };
-	std::vector<int, 3> liczniki_kolumn = { 0,0,0 };
+	std::vector<int> liczniki_rzedow = { 0,0,0 };
+	std::vector<int> liczniki_kolumn = { 0,0,0 };
+	int licznik_diag_1 = 0;
+	int licznik_diag_2 = 0;
 
 public:
-	Przeciwnik() {}
-	~Przeciwnik() {}
-	Przeciwnik(char symbol, Plansza& siatka) {
+	~Przeciwnik() {
+	}
+	Przeciwnik(const char symbol, Plansza& siatka) : plansza(siatka) {
 		znak = symbol;
-		plansza = siatka;
+		//plansza = siatka;
 		if (znak == 'X')
 			znak_gracza = 'O';
 		else
@@ -22,38 +24,87 @@ public:
 
 	}
 
-	void turn() {
-		char& pole = locate();
-		pole = znak;
+	int tura() {
+		if (plansza.check_win(znak_gracza)) {
+			std::cout << "\nGratulacje, zwyciêstwo!\n\n";
+			plansza.print();
+			return 1;
+		}
+		else {
+			plansza.set(znak, locate());
+			plansza.print();
+			return 2;
+		};
+
 	};
 
+
+
 	char& locate() {
-		//char& pozycja_x;
-		//std::vector<char>& pozycja_y;
-		for (int i; i == 3; i++) {
-			liczniki_rzedow[i] = plansza.count(znak_gracza, 0, i);
-			liczniki_kolumn[i] = plansza.count(znak_gracza, 1, i);
+		//ostatni ruch komputera
+		for (int i = 0; i < 3; i++) {
+			liczniki_rzedow[i] = plansza.count(znak, 0, i);
+			liczniki_kolumn[i] = plansza.count(znak, 1, i);
 			if (liczniki_rzedow[i] == 2)
 			{
-				//pozycja_y = i;
-				for (auto pole : plansza.rzedy[i]) {
-					(pole == '.') ? return pole;
+				for (char& pole : plansza.rzedy[i]) {
+					if (pole == '.')
+						return pole;
 				};
 			}
 			else if (liczniki_kolumn[i] == 2)
 			{
-				for (auto pole : plansza.rzedy) {
-					(pole[i] == '.') ? return pole[i];
+				for (std::array<char, 3>&rzad : plansza.rzedy) {
+					if (rzad[i] == '.')
+						return rzad[i];
+				};
+			};
+			/*else if (plansza.count_diag(znak, 1) == 2)
+			{
+				for (char& pole : plansza.diag) {
+					if (pole == '.')
+						return pole;
+				};
+			}
+			else if (plansza.count_diag(znak, 0) == 2)
+			{
+				for (char& pole : plansza.diag) {
+					if (pole == '.')
+						return pole;
+				};
+			};*/
+		};
+		//defensywa
+		for (int i = 0; i < 3; i++) {
+			liczniki_rzedow[i] = plansza.count(znak_gracza, 0, i);
+			liczniki_kolumn[i] = plansza.count(znak_gracza, 1, i);
+			if (liczniki_rzedow[i] == 2)
+			{
+				for (char& pole : plansza.rzedy[i]) {
+					if (pole == '.')
+						return pole;
+				};
+			}
+			else if (liczniki_kolumn[i] == 2)
+			{
+				for (std::array<char, 3>&rzad : plansza.rzedy) {
+					if (rzad[i] == '.')
+						return rzad[i];
 				};
 			};
 		};
-		for (auto rzad : plansza.rzedy) {
-			for (auto pole : rzad)
-				(pole == '.') ? return pole;
+		//rozegranie
+		if (plansza.rzedy[1][1] == '.')
+			return plansza.rzedy[1][1];
+		for (std::array<char, 3>& rzad : plansza.rzedy) {
+			for (int i = 0; i < 3; i++)
+				if (rzad[i] == '.')
+					return rzad[i];
+
 		};
 	};
 
 
 
 
-}
+};

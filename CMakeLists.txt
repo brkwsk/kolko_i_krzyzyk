@@ -1,0 +1,1 @@
+add_executable(kolko_i_krzyzyk "main.cpp" "include/Plansza.hpp")

@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Users/andrz/Dokumenty/GitHub/kolko_i_krzyzyk/out/build/x64-Debug/CMakeFiles/kolko_i_krzyzyk.dir/embed.manifest"
