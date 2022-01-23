@@ -6,10 +6,11 @@ class Plansza() {
 	std::vector<char,3> B = {.,.,.};
 	std::vector<char,3> C = {.,.,.};
 	std::vector<std::vector<char>&,3> rzedy = {A,B,C};
+	friend class Przeciwnik;
 
 public:
-	Plansza() {};
-	~Plansza() {};
+	Plansza() {}
+	~Plansza() {}
 
 	void print() {
 		std::cout << "    1 2 3\nA: |" << rzedy[0][0] << "|" << rzedy[0][1] << "|" << rzedy[0][2] << "|\n";
@@ -17,11 +18,24 @@ public:
 		std::cout << "C: |" << rzedy[2][0] << "|" << rzedy[2][1] << "|" << rzedy[2][2] << "|\n";
 	};
 	
-	void set(char znak, int x, int y) {
-		rzedy[y][x] = znak;
+	void set(const char znak, char& pole) {
+		pole = znak;
 	};
 
-	char get(int x, int y) {
-		return rzedy[y][x];
+	char get(char& pole) {
+		return pole;
+	};
+
+	int count(const char znak, const bool pion, const int pozycja) {
+		int count = 0;
+		if (pion) {
+			for (auto pole : rzedy)
+				(pole[pozycja] == znak) ? count++;
+		}
+		else {
+			for (auto pole : rzedy[pozycja])
+				(rzedy[pozycja][pole] == znak) ? count++;
+		};
+		return count;
 	};
 }
