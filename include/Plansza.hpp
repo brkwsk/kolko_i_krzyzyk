@@ -7,10 +7,8 @@ class Plansza {
 	std::array<char,3> A = { '.','.','.' };
 	std::array<char,3> B = { '.','.','.' };
 	std::array<char,3> C = { '.','.','.' };
-	//std::array<char, 3> diag1 = { A[0],B[1],C[2]};
-	//std::array<char, 3> diag2 = { A[2],B[1],C[0] };
 	std::array<std::array<char,3>,3> rzedy = { A,B,C };
-	//std::array<char, 3> diag = {'.','.','.'};
+	int l_tur = 0;
 	friend class Przeciwnik;
 
 public:
@@ -18,9 +16,9 @@ public:
 	~Plansza() {}
 
 	void print() {
-		std::cout << "    1 2 3\nA: |" << rzedy[0][0] << "|" << rzedy[0][1] << "|" << rzedy[0][2] << "|\n";
+		std::cout << "\n    1 2 3\nA: |" << rzedy[0][0] << "|" << rzedy[0][1] << "|" << rzedy[0][2] << "|\n";
 		std::cout << "B: |" << rzedy[1][0] << "|" << rzedy[1][1] << "|" << rzedy[1][2] << "|\n";
-		std::cout << "C: |" << rzedy[2][0] << "|" << rzedy[2][1] << "|" << rzedy[2][2] << "|\n";
+		std::cout << "C: |" << rzedy[2][0] << "|" << rzedy[2][1] << "|" << rzedy[2][2] << "|\n\n";
 	};
 
 	void set(const char znak, char& pole) {
@@ -29,6 +27,14 @@ public:
 
 	char get(char& pole) {
 		return pole;
+	};
+
+	int get_turn() {
+		return l_tur;
+	};
+
+	void count_turn() {
+		l_tur++;
 	};
 
 	char& get_cell(char rzad, int kolumna) {
@@ -40,12 +46,18 @@ public:
 			return rzedy[2][kolumna-1];
 	}
 
+	char& get_cell_nums(int rzad, int kolumna) {
+		return rzedy[rzad][kolumna];
+	}
+
 	int count(const char znak, const bool pion, const int pozycja) {
 		int count = 0;
 		if (pion) {
-			for (std::array<char,3>& rzad : rzedy)
-				if(rzad[pozycja] == znak)
+			for (std::array<char, 3>&rzad : rzedy)
+				if (rzad[pozycja] == znak) {
 					count++;
+				};
+
 		}
 		else {
 			for (char& pole : rzedy[pozycja])
@@ -58,20 +70,16 @@ public:
 	int count_diag(const char znak, const bool naroznik_lewo_gora) {
 		int count = 0;
 		if (naroznik_lewo_gora) {
-			if (A[0] == znak)
-				count++;
-			if (B[1] == znak)
-				count++;
-			if (C[2] == znak)
-				count++;
+			for (int i = 0; i < 3; i++) {
+				if (rzedy[i][i] == znak)
+					count++;
+			};
 		}
 		else {
-			if (A[2] == znak)
-				count++;
-			if (B[1] == znak)
-				count++;
-			if (C[0] == znak)
-				count++;
+			for (int i = 0; i < 3; i++) {
+				if (rzedy[i][2-i] == znak)
+					count++;
+			};
 		};
 		return count;
 	};

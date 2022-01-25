@@ -1,6 +1,7 @@
 #include <iostream>
 #include "include/Plansza.hpp"
 #include "Przeciwnik.hpp"
+#include <vector>
 
 
 class Gra {
@@ -11,13 +12,15 @@ class Gra {
 	int zwyciestwo = 2;
 	char rzad;
 	int kolumna;
+	std::vector<int> kolumny = { 1,2,3 };
+	std::vector<char> wiersze = { 'A','B','C' };
 
 
 public:
-	Gra(){
-	
+	Gra() {
+
 	}
-	~Gra(){
+	~Gra() {
 		delete komp;
 	}
 	Gra(const char znak) {
@@ -45,21 +48,44 @@ public:
 		return zwyciestwo;
 	};
 
+
+
 	void tura() {
 		if (plansza.check_win(znak_przeciwn)) {
 			std::cout << "\nNiestety, przegrana.\n\n";
 			zwyciestwo = 0;
 		}
-		else {
-			std::cout << "Wybierz kolumne (1,2,3)\n";
+		else if (plansza.get_turn() < 9) {
+			std::cout << "Wybierz kolumne (1,2,3): ";
 			std::cin >> kolumna;
-			std::cout << "Wybierz rzad (A,B,C)\n";
+			while ((std::find(kolumny.begin(), kolumny.end(), kolumna) != kolumny.end()) == false) {
+				std::cin.clear();
+				std::cin.ignore();
+				std::cout << "Wybierz poprawna kolumne (1,2,3): ";
+				std::cin >> kolumna;
+			};
+			std::cout << "Wybierz rzad (A,B,C): ";
 			std::cin >> rzad;
+			if(islower(rzad))
+				rzad = toupper(rzad);
+			while ((std::find(wiersze.begin(), wiersze.end(), rzad) != wiersze.end()) == false) {
+				std::cout << "Wybierz poprawny rzad (A,B,C): ";
+				std::cin >> rzad;
+				if(islower(rzad))
+					rzad = toupper(rzad);
+			};
 			plansza.set(znak_gracza, plansza.get_cell(rzad, kolumna));
 			plansza.print();
-			std::cout << zwyciestwo << "\n";
-			zwyciestwo = komp->tura();
-		};
+			plansza.count_turn();
+			if (plansza.get_turn() < 9) {
+				zwyciestwo = komp->tura();
+				plansza.count_turn();
+			}
+			else
+				std::cout << "Remis, dobra rozgrywka!\n";
+		}
+		else
+			std::cout << "Remis, dobra rozgrywka!\n";
 	};
 
 };
