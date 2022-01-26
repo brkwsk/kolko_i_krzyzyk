@@ -74,6 +74,27 @@ public:
 				if(islower(rzad))
 					rzad = toupper(rzad);
 			};
+			while (plansza.get_cell(rzad, kolumna) != '.') {
+				std::cout << "\nPole zajete, wybierz wolne pole\n";
+				std::cout << "Wybierz kolumne (1,2,3): ";
+				std::cin >> kolumna;
+				while ((std::find(kolumny.begin(), kolumny.end(), kolumna) != kolumny.end()) == false) {
+					std::cin.clear();
+					std::cin.ignore();
+					std::cout << "Wybierz poprawna kolumne (1,2,3): ";
+					std::cin >> kolumna;
+				};
+				std::cout << "Wybierz rzad (A,B,C): ";
+				std::cin >> rzad;
+				if (islower(rzad))
+					rzad = toupper(rzad);
+				while ((std::find(wiersze.begin(), wiersze.end(), rzad) != wiersze.end()) == false) {
+					std::cout << "Wybierz poprawny rzad (A,B,C): ";
+					std::cin >> rzad;
+					if (islower(rzad))
+						rzad = toupper(rzad);
+				};
+			};
 			plansza.set(znak_gracza, plansza.get_cell(rzad, kolumna));
 			plansza.print();
 			plansza.count_turn();

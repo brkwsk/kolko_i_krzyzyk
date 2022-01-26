@@ -44,7 +44,11 @@ int main()
 			gra->tura();
 		};
 
-		std::cout << "\nWpisz 1, aby zagrac ponownie\n";
-		std::cin >> rozgrywka;
+		std::cout << "\nWpisz 1, aby zagrac ponownie lub 0, aby zakoñczyæ\n";
+		while (!(std::cin >> rozgrywka)) {
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << "Wpisz 0 lub 1\n";
+		};
 	};
 };
