@@ -58,7 +58,7 @@ public:
 		else if (plansza.get_turn() < 9) {
 			std::cout << "Wybierz kolumne (1,2,3): ";
 			std::cin >> kolumna;
-			while ((std::find(kolumny.begin(), kolumny.end(), kolumna) != kolumny.end()) == false) {
+			while (std::find(kolumny.begin(), kolumny.end(), kolumna) == kolumny.end()) {
 				std::cin.clear();
 				std::cin.ignore();
 				std::cout << "Wybierz poprawna kolumne (1,2,3): ";
@@ -68,7 +68,7 @@ public:
 			std::cin >> rzad;
 			if(islower(rzad))
 				rzad = toupper(rzad);
-			while ((std::find(wiersze.begin(), wiersze.end(), rzad) != wiersze.end()) == false) {
+			while (std::find(wiersze.begin(), wiersze.end(), rzad) == wiersze.end()) {
 				std::cout << "Wybierz poprawny rzad (A,B,C): ";
 				std::cin >> rzad;
 				if(islower(rzad))
