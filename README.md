@@ -7,4 +7,4 @@
  
  Gra kończy się w momencie utworzenia linii 3 takich samych znaków lub upłynięcia 9 tur. Po zakończonej grze gracz ma możliwość rozpoczęcia nowej partii.
  
- Komputer nie potrafi przegrać. Zaimplementowana jest walidacja wprowadzanych danych.
+ Komputer nie potrafi przegrać. Zaimplementowana jest częściowa walidacja wprowadzanych danych - wprowadzenie ciągu znaków może wywołać błędy.
