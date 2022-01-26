@@ -1,5 +1,5 @@
 # kolko_i_krzyzyk
- Prosta gra w kolko i krzyzyk
+ Prosta gra w kółko i krzyżyk.
  
  Oprócz main.cpp, kod zawarty jest w 3 plikach hpp: Plansza, Przeciwnik i Gra, zawierających definicje klas o odpowiednich nazwach.
  
