@@ -21,6 +21,10 @@ public:
 		std::cout << "C: |" << rzedy[2][0] << "|" << rzedy[2][1] << "|" << rzedy[2][2] << "|\n\n";
 	};
 
+	std::array<std::array<char, 3>, 3>& get_board() {
+		return rzedy;
+	}
+
 	void set(const char znak, char& pole) {
 		pole = znak;
 	};
