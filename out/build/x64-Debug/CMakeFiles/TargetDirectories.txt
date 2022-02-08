@@ -1,3 +1,0 @@
-C:/Users/andrz/Dokumenty/GitHub/kolko_i_krzyzyk/out/build/x64-Debug/CMakeFiles/kolko_i_krzyzyk.dir
-C:/Users/andrz/Dokumenty/GitHub/kolko_i_krzyzyk/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-C:/Users/andrz/Dokumenty/GitHub/kolko_i_krzyzyk/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
