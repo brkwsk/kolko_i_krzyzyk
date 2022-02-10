@@ -218,7 +218,7 @@ public:
 
 	};
 
-	virtual char& locate() {
+	char& locate() {
 		//blokowanie 3 znaku
 		for (int i = 0; i < 3; i++) {
 			liczniki_rzedow[i] = plansza.count(znak_gracza, 0, i);
@@ -388,7 +388,7 @@ public:
 
 	};
 
-	virtual char& locate() {
+	char& locate() {
 		//stawianie 3 znaku
 		for (int i = 0; i < 3; i++) {
 			liczniki_rzedow[i] = plansza.count(znak, 0, i);
@@ -560,7 +560,7 @@ public:
 
 	};
 
-	virtual char& locate() {
+	char& locate() {
 		int x = 0;
 		int y = 0;
 
