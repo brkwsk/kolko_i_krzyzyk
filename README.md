@@ -7,5 +7,5 @@
  
  Gra kończy się w momencie utworzenia linii 3 takich samych znaków lub upłynięcia 9 tur. Po zakończonej grze gracz ma możliwość rozpoczęcia nowej partii.
  
- Komputer typu pro nie potrafi przegrać (zgodnie z moją wiedzą). Komputer normalny gra nieoptymalnie, ale racjonalnie. Przeciwnik chaotyczny gra losowo.
+ Komputer typu pro raczej nie przegrywa - udało mi się znaleźć jedną strategię na pokonanie go. Komputer normalny gra nieoptymalnie, ale racjonalnie. Przeciwnik chaotyczny gra losowo.
  Zaimplementowana jest częściowa walidacja wprowadzanych danych - wprowadzenie ciągu znaków może wywołać błędy. W wypadku wystąpienia błędu w algorytmie przeciwnika, wywołany zostanie wyjątek.
